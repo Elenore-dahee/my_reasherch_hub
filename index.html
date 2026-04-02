@@ -444,6 +444,78 @@
       border-radius: 10px;
     }
 
+    /* ─── Publications ─── */
+    .pub-item {
+      border: 1px solid var(--gray-line);
+      border-radius: 10px;
+      padding: 24px 26px;
+      background: var(--white);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .pub-item:hover {
+      box-shadow: 0 4px 20px rgba(26, 46, 74, 0.08);
+      border-color: var(--slate-blue);
+    }
+
+    .pub-year-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      background: var(--slate-blue);
+      padding: 2px 9px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .pub-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .pub-authors {
+      font-size: 13.5px;
+      color: var(--gray-mid);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .pub-authors strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .pub-journal {
+      font-size: 13px;
+      color: var(--slate-blue);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .pub-doi {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--slate-blue);
+      text-decoration: none;
+      border: 1px solid rgba(74, 111, 165, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+
+    .pub-doi:hover {
+      background: rgba(74, 111, 165, 0.08);
+    }
+
     /* ─── Interests ─── */
     .interests-grid {
       display: grid;
@@ -670,6 +742,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">소개</a></li>
         <li><a href="#research">연구</a></li>
+        <li><a href="#publications">논문</a></li>
         <li><a href="#interests">관심사</a></li>
         <li><a href="#timeline">이력</a></li>
         <li><a href="#contact">연락처</a></li>
@@ -684,11 +757,11 @@
   <header class="hero" id="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <div class="hero-badge">Researcher · NITR</div>
+        <div class="hero-badge">UST · 국가독성과학연구소 스쿨</div>
         <h1 class="hero-name-ko">이다희</h1>
         <p class="hero-name-en">Da-hee Lee</p>
-        <p class="hero-role">석사과정 연구원</p>
-        <p class="hero-affil">국가독성과학연구소 (National Institute of Toxicological Research)</p>
+        <p class="hero-role">석사과정 연구원 · 인체 및 환경 독성학전공</p>
+        <p class="hero-affil">글로벌의약바이오연구단 · 국가독성과학연구소 (Korea Institute of Toxicology)</p>
       </div>
       <div class="hero-avatar">
         <img src="profile.jpg" alt="이다희 프로필 사진">
@@ -719,19 +792,19 @@
         </div>
         <div class="about-meta">
           <div class="meta-card">
-            <div class="meta-card-label">소속</div>
-            <div class="meta-card-value">국가독성과학연구소</div>
-            <div class="meta-card-sub">National Institute of Toxicological Research</div>
+            <div class="meta-card-label">대학원</div>
+            <div class="meta-card-value">과학기술연합대학원대학교 (UST)</div>
+            <div class="meta-card-sub">국가독성과학연구소 스쿨 · 인체 및 환경 독성학전공</div>
           </div>
           <div class="meta-card">
-            <div class="meta-card-label">직위</div>
-            <div class="meta-card-value">석사과정 연구원</div>
-            <div class="meta-card-sub">Master's Research Student</div>
+            <div class="meta-card-label">소속 연구단</div>
+            <div class="meta-card-value">글로벌의약바이오연구단</div>
+            <div class="meta-card-sub">Korea Institute of Toxicology (국가독성과학연구소)</div>
           </div>
           <div class="meta-card">
             <div class="meta-card-label">전공 분야</div>
-            <div class="meta-card-value">독성과학 / Toxicological Science</div>
-            <div class="meta-card-sub">세포유전자치료제 안전성 평가</div>
+            <div class="meta-card-value">인체 및 환경 독성학</div>
+            <div class="meta-card-sub">Human &amp; Environmental Toxicology</div>
           </div>
         </div>
       </div>
@@ -777,6 +850,30 @@
         </div>
 
       </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <p class="section-label">Publications</p>
+      <h2 class="section-title">논문</h2>
+
+      <div class="pub-item">
+        <span class="pub-year-badge">2026</span>
+        <div class="pub-title">
+          Wnt Signaling Downregulation Mediates T Cell Apoptosis Following OKT3-Induced T Cell Activation in Preclinical Models
+        </div>
+        <div class="pub-authors">
+          Myeongjin Choi, Duhyeon Park, <strong>Da-Hee Lee</strong>, Chang Hoon Choi, Minseong Jo, Seo Yule Jeong, Seung Yeon Lim, Daeui Park, Kyoung-Sik Moon
+        </div>
+        <div class="pub-journal">The FASEB Journal, 2026</div>
+        <a href="https://doi.org/10.1096/fj.202502259RR" target="_blank" rel="noopener noreferrer" class="pub-doi">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+          </svg>
+          DOI: 10.1096/fj.202502259RR
+        </a>
+      </div>
+
     </section>
 
     <!-- Interests -->
