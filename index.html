@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이다희 | Da-hee Lee</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #1a2e4a;
+      --slate-blue: #4a6fa5;
+      --slate-light: #6b8cbe;
+      --gray-dark: #333740;
+      --gray-mid: #6b7280;
+      --gray-light: #9ca3af;
+      --gray-pale: #f3f4f6;
+      --gray-line: #e5e7eb;
+      --white: #ffffff;
+      --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      --max-width: 900px;
+      --section-gap: 80px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-stack);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-dark);
+      background-color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-line);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .nav-brand span {
+      font-weight: 400;
+      color: var(--slate-blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--gray-mid);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      padding-top: 60px; /* nav height */
+      background: linear-gradient(160deg, var(--navy) 0%, #243d5f 60%, #2e5080 100%);
+      color: var(--white);
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 72px 24px 64px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+      background: rgba(74, 111, 165, 0.25);
+      border: 1px solid rgba(74, 111, 165, 0.4);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero-name-ko {
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .hero-name-en {
+      font-size: clamp(16px, 3vw, 22px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.65);
+      letter-spacing: 0.08em;
+      margin-bottom: 22px;
+    }
+
+    .hero-role {
+      font-size: 15.5px;
+      color: rgba(255, 255, 255, 0.82);
+      margin-bottom: 6px;
+    }
+
+    .hero-affil {
+      font-size: 14.5px;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba(74, 111, 165, 0.3);
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--slate-blue), transparent);
+    }
+
+    /* ─── Main layout ─── */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid var(--gray-line);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--slate-blue);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── About ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .about-text p {
+      font-size: 15.5px;
+      color: var(--gray-dark);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .meta-card {
+      background: var(--gray-pale);
+      border-left: 3px solid var(--slate-blue);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .meta-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 4px;
+    }
+
+    .meta-card-value {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .meta-card-sub {
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-top: 2px;
+    }
+
+    /* ─── Research ─── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .research-card {
+      background: var(--white);
+      border: 1px solid var(--gray-line);
+      border-radius: 10px;
+      padding: 26px 24px;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .research-card:hover {
+      box-shadow: 0 6px 24px rgba(26, 46, 74, 0.09);
+      border-color: var(--slate-blue);
+      transform: translateY(-2px);
+    }
+
+    .research-card-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--slate-blue), var(--navy));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .research-card-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: white;
+      fill: none;
+    }
+
+    .research-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .research-card-desc {
+      font-size: 13.5px;
+      color: var(--gray-mid);
+      line-height: 1.75;
+    }
+
+    .research-card-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--slate-blue);
+      background: rgba(74, 111, 165, 0.1);
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    /* ─── Timeline ─── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 0;
+      width: 2px;
+      background: var(--gray-line);
+    }
+
+    .timeline-section-header {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 20px;
+      margin-top: 36px;
+    }
+
+    .timeline-section-header:first-child {
+      margin-top: 0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--slate-blue);
+      z-index: 1;
+    }
+
+    .timeline-dot.dot-current {
+      background: var(--slate-blue);
+      box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+    }
+
+    .timeline-dot.dot-edu {
+      border-color: var(--navy);
+    }
+
+    .timeline-dot.dot-edu.dot-current {
+      background: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26, 46, 74, 0.15);
+    }
+
+    .timeline-period {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gray-light);
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .timeline-sub {
+      font-size: 14px;
+      color: var(--gray-mid);
+    }
+
+    .timeline-badge {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--slate-blue);
+      padding: 2px 9px;
+      border-radius: 10px;
+    }
+
+    /* ─── Interests ─── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .interest-card {
+      background: var(--gray-pale);
+      border-radius: 12px;
+      padding: 22px 18px;
+      text-align: center;
+      border: 1px solid var(--gray-line);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .interest-card:hover {
+      border-color: var(--slate-blue);
+      transform: translateY(-2px);
+    }
+
+    .interest-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .interest-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .interest-desc {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 700px) {
+      .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ─── Contact ─── */
+    .contact-intro {
+      font-size: 15.5px;
+      color: var(--gray-mid);
+      max-width: 560px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border: 1.5px solid var(--gray-line);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 14.5px;
+      font-weight: 600;
+      background: var(--white);
+      transition: all 0.2s;
+      min-width: 180px;
+    }
+
+    .contact-link:hover {
+      border-color: var(--slate-blue);
+      background: rgba(74, 111, 165, 0.04);
+      box-shadow: 0 4px 14px rgba(74, 111, 165, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .contact-link svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-item-static {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border: 1.5px solid var(--gray-line);
+      border-radius: 10px;
+      color: var(--navy);
+      font-size: 14.5px;
+      font-weight: 600;
+      background: var(--gray-pale);
+      min-width: 180px;
+    }
+
+    .contact-item-static svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--gray-mid);
+    }
+
+    .contact-item-label {
+      font-size: 11px;
+      color: var(--gray-light);
+      font-weight: 500;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.45);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 600;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 700px) {
+      :root {
+        --section-gap: 56px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 52px 20px 48px;
+        gap: 28px;
+      }
+
+      .hero-avatar {
+        width: 100px;
+        height: 100px;
+        order: -1;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--gray-line);
+        flex-direction: column;
+        padding: 16px 24px;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid var(--gray-line);
+      }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+        font-size: 15px;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .contact-links {
+        flex-direction: column;
+      }
+
+      .contact-link,
+      .contact-item-static {
+        min-width: unset;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      main {
+        padding: 0 16px;
+      }
+
+      .nav-inner {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">이다희 <span>/ da-hee.lee</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">소개</a></li>
+        <li><a href="#research">연구</a></li>
+        <li><a href="#interests">관심사</a></li>
+        <li><a href="#timeline">이력</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">Researcher · NITR</div>
+        <h1 class="hero-name-ko">이다희</h1>
+        <p class="hero-name-en">Da-hee Lee</p>
+        <p class="hero-role">석사과정 연구원</p>
+        <p class="hero-affil">국가독성과학연구소 (National Institute of Toxicological Research)</p>
+      </div>
+      <div class="hero-avatar">
+        <img src="profile.jpg" alt="이다희 프로필 사진">
+      </div>
+    </div>
+    <div class="hero-divider"></div>
+  </header>
+
+  <main>
+
+    <!-- About -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <h2 class="section-title">소개</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            안녕하세요. 저는 국가독성과학연구소에서 석사과정을 밟고 있는 연구원 이다희입니다.
+            동의대학교 임상병리학과를 졸업한 후, 국립암센터와 좋은문화병원 병리과에서의
+            임상 경력을 바탕으로 현재는 <strong>바이오의약품 독성평가</strong> 및
+            <strong>CAR-NK 기반 세포유전자치료제</strong>의 안전성 연구에 집중하고 있습니다.
+          </p>
+          <p>
+            차세대 항암 면역세포치료제의 전임상 안전성 평가 체계를 구축하고,
+            신약개발 과정에서 독성학적 근거를 마련하는 연구를 수행하고 있습니다.
+            연구 외에도 독서, 기타 연주, 전시회 관람을 즐기며 다양한 시각으로 세상을 바라보려 노력합니다.
+          </p>
+        </div>
+        <div class="about-meta">
+          <div class="meta-card">
+            <div class="meta-card-label">소속</div>
+            <div class="meta-card-value">국가독성과학연구소</div>
+            <div class="meta-card-sub">National Institute of Toxicological Research</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">직위</div>
+            <div class="meta-card-value">석사과정 연구원</div>
+            <div class="meta-card-sub">Master's Research Student</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">전공 분야</div>
+            <div class="meta-card-value">독성과학 / Toxicological Science</div>
+            <div class="meta-card-sub">세포유전자치료제 안전성 평가</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <p class="section-label">Research</p>
+      <h2 class="section-title">연구 관심 분야</h2>
+      <div class="research-grid">
+
+        <div class="research-card">
+          <div class="research-card-icon">
+            <!-- Cell/DNA icon -->
+            <svg viewBox="0 0 24 24" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M6.5 6.5c3-3 8-3 9 1s-3 9-1 9 7-4 7-8"/>
+              <path d="M17.5 17.5c-3 3-8 3-9-1s3-9 1-9-7 4-7 8"/>
+            </svg>
+          </div>
+          <div class="research-card-title">CAR-NK 세포유전자치료제 폐암 적용 및 안전성 평가</div>
+          <div class="research-card-desc">
+            CAR-NK (Chimeric Antigen Receptor Natural Killer) 기반 세포유전자치료제를
+            폐암 모델에 적용하고, 전임상 단계에서의 독성 및 안전성 프로파일을 평가합니다.
+          </div>
+          <span class="research-card-tag">CAR-NK · Cell & Gene Therapy</span>
+        </div>
+
+        <div class="research-card">
+          <div class="research-card-icon">
+            <!-- Flask/toxicology icon -->
+            <svg viewBox="0 0 24 24" stroke-width="1.8">
+              <path d="M9 3h6m-6 0v6l-4 9a1 1 0 001 2h10a1 1 0 001-2l-4-9V3m-4 0"/>
+              <path d="M9 12h6"/>
+            </svg>
+          </div>
+          <div class="research-card-title">바이오의약품 독성평가</div>
+          <div class="research-card-desc">
+            Biopharmaceutical toxicity evaluation 체계를 연구합니다.
+            생물학적 제제의 독성 메커니즘 규명 및 안전성 평가 기준 수립을 목표로 합니다.
+          </div>
+          <span class="research-card-tag">Biopharmaceuticals · Toxicology</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interests -->
+    <section id="interests">
+      <p class="section-label">Beyond Research</p>
+      <h2 class="section-title">관심사 &amp; 취미</h2>
+      <div class="interests-grid">
+
+        <div class="interest-card">
+          <span class="interest-icon">🎸</span>
+          <div class="interest-name">기타</div>
+          <div class="interest-desc">어쿠스틱 기타를 독학 중. 기타 수업 수료 후 첫 공연도 경험했습니다.</div>
+        </div>
+
+        <div class="interest-card">
+          <span class="interest-icon">📚</span>
+          <div class="interest-name">독서</div>
+          <div class="interest-desc">다양한 분야의 책을 읽고 블로그 '다동동 독서노트'에 독서 기록을 남깁니다.</div>
+        </div>
+
+        <div class="interest-card">
+          <span class="interest-icon">🎨</span>
+          <div class="interest-name">전시·미술</div>
+          <div class="interest-desc">미디어아트, 사진전, 현대미술 전시를 즐겨 관람합니다.</div>
+        </div>
+
+        <div class="interest-card">
+          <span class="interest-icon">🗺️</span>
+          <div class="interest-name">국내 여행</div>
+          <div class="interest-desc">자연과 지역 문화를 탐방하는 국내 여행을 즐깁니다.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education & Career Timeline -->
+    <section id="timeline">
+      <p class="section-label">Education &amp; Career</p>
+      <h2 class="section-title">학력 및 경력</h2>
+
+      <div class="timeline">
+
+        <!-- Education -->
+        <div class="timeline-section-header">학력 / Education</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-edu"></div>
+          <div class="timeline-period">2019년 2월 졸업</div>
+          <div class="timeline-title">동의대학교 임상병리학과</div>
+          <div class="timeline-sub">
+            Bachelor of Science in Clinical Laboratory Science<br>
+            Dong-eui University
+          </div>
+        </div>
+
+        <!-- Career -->
+        <div class="timeline-section-header">경력 / Career</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-current"></div>
+          <div class="timeline-period">2025.03 – 현재 (Present)</div>
+          <div class="timeline-title">국가독성과학연구소 석사과정</div>
+          <div class="timeline-sub">National Institute of Toxicological Research</div>
+          <span class="timeline-badge">재직 중</span>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">2021.07.07 – 2023.08.16</div>
+          <div class="timeline-title">부산 좋은문화병원 병리과</div>
+          <div class="timeline-sub">병리 검사 및 조직처리 업무</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">2019.11.04 – 2020.09.03</div>
+          <div class="timeline-title">국립암센터 병리과</div>
+          <div class="timeline-sub">인턴 (National Cancer Center, Pathology Dept.)</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">연락처</h2>
+      <p class="contact-intro">
+        연구 협력 또는 문의 사항이 있으시면 아래 채널을 통해 연락주세요.
+      </p>
+      <div class="contact-links">
+
+        <!-- GitHub -->
+        <a href="https://github.com/Elenore-dahee/my_reasherch_hub"
+           target="_blank" rel="noopener noreferrer" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--navy)">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482
+              0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462
+              -.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832
+              .092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683
+              -.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59
+              9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699
+              1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336
+              -.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+          <div>
+            GitHub
+            <span class="contact-item-label">Elenore-dahee</span>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/dahee._.lee0119"
+           target="_blank" rel="noopener noreferrer" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:var(--navy)">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          <div>
+            Instagram
+            <span class="contact-item-label">dahee._.lee0119</span>
+          </div>
+        </a>
+
+        <!-- Blog (no link) -->
+        <div class="contact-item-static">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          <div>
+            다동동 독서노트
+            <span class="contact-item-label">네이버 블로그 · 독서 기록</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>이다희 (Da-hee Lee)</strong> &nbsp;·&nbsp; 국가독성과학연구소 석사과정 연구원</p>
+    <p style="margin-top:6px;">© 2026 Da-hee Lee. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const isOpen = navLinks.classList.contains('open');
+      toggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Highlight active nav link on scroll
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const links = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.style.color = 'var(--navy)';
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
